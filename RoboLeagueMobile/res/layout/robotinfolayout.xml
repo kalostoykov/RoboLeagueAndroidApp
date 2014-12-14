@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundcolor"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/inforobotname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        
+        android:textSize="40sp" >
+    </TextView>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1" >
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/firstlap"
+                android:layout_width="0dp"
+         		android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:text="@string/firstlaptext"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/firstlapresult"
+                android:layout_width="0dp"
+         		android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:padding="3dp"
+                android:textSize="40sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/secondlap"
+                android:layout_width="0dp"
+         		android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:text="@string/secondlaptext"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/secondlapresult"
+                android:layout_width="0dp"
+         		android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:padding="3dp"
+                android:textSize="40sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/thirdlap"
+                android:layout_width="0dp"
+         		android:layout_height="wrap_content"
+         		android:layout_weight="1"
+                android:padding="3dp"
+                android:text="@string/thirdlaptext"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/thirdlapresult"
+                android:layout_width="0dp"
+         		android:layout_height="wrap_content"
+         		android:layout_weight="1"
+                android:gravity="right"
+                android:padding="3dp"
+                android:textSize="40sp" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

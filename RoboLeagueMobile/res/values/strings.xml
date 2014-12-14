@@ -1,0 +1,19 @@
+<resources>
+
+    <string name="app_name">RoboLeagueMobile</string>
+    <string name="textmenu">Robots:</string>
+    <color name="backgroundcolor">#0deed2</color>
+    <color name="dtitlecolor">#ffffff</color>
+    
+    <string name="addrobot">Add New Robot</string>
+    <string name="robotname">robot_name</string>
+    <string name="logo">Robo League</string>
+    <string name="hintname">Enter robot name</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="firstlaptext">1</string>
+    <string name="secondlaptext">2</string>
+    <string name="thirdlaptext">3</string>
+    <string name="devicestextmenu">Devices</string>
+
+</resources>
