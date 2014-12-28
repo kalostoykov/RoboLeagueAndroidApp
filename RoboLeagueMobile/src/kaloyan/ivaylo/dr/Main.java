@@ -32,7 +32,7 @@ public class Main extends Activity {
 		devices = new ArrayList<BluetoothDevice>();
 		bAdapter = BluetoothAdapter.getDefaultAdapter();
 		if(bAdapter == null){
-			Toast.makeText(context, "fail", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, "No bluetooth adapter", Toast.LENGTH_LONG).show();
 			return;
 		}
 		if(!bAdapter.isEnabled()) {
