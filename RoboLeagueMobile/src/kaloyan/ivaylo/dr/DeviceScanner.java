@@ -27,6 +27,8 @@ public class DeviceScanner extends Activity {
 	
 	private BluetoothDeviceAdapter deviceListAdapter;
 	private ListView deviceList;
+	
+	private ArrayAdapter<String> btArrayAdapter;
 
 	private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 		@Override
@@ -36,11 +38,14 @@ public class DeviceScanner extends Activity {
 				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 				if (device.getName() != null) {
 					devices.add(device);
+					btArrayAdapter.add(device.getName() + "\n" + device.getAddress());
 					Log.w("BLT", device.getName());
-					deviceListAdapter.notifyDataSetChanged();
+					btArrayAdapter.notifyDataSetChanged();
+//					deviceListAdapter.notifyDataSetChanged();
 				}
 			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-				deviceListAdapter.notifyDataSetChanged();
+//				deviceListAdapter.notifyDataSetChanged();
+				btArrayAdapter.notifyDataSetChanged();
 			}
 		}
 	};
