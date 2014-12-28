@@ -12,6 +12,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -20,9 +23,9 @@ import com.example.myfirstapp.R;
 public class DeviceScanner extends Activity {
 
 	private BluetoothAdapter bluetooth;
-	private List<String> deviceNames;
+	private List<BluetoothDevice> devices;
 	
-	private ArrayAdapter<String> deviceListAdapter;
+	private BluetoothDeviceAdapter deviceListAdapter;
 	private ListView deviceList;
 
 	private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -32,7 +35,8 @@ public class DeviceScanner extends Activity {
 			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 				if (device.getName() != null) {
-					deviceNames.add(device.getName());
+					devices.add(device);
+					Log.w("BLT", device.getName());
 					deviceListAdapter.notifyDataSetChanged();
 				}
 			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
@@ -46,14 +50,23 @@ public class DeviceScanner extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.devicemenu);
 		
-		deviceNames = new ArrayList<String>();
+		devices = new ArrayList<BluetoothDevice>();
 		bluetooth = BluetoothAdapter.getDefaultAdapter();
 		
-		deviceListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, deviceNames);
+		deviceListAdapter = new BluetoothDeviceAdapter(devices, this);
 		deviceList = (ListView) findViewById(R.id.devicelist);
 		deviceList.setAdapter(deviceListAdapter);
 		
+		deviceList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+				Log.w("BLT", "Selected item " + devices.get(position));
+			}
+		});
+		
 		IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+		
 		registerReceiver(broadcastReceiver, filter);
 		discoverDevices();
 	}

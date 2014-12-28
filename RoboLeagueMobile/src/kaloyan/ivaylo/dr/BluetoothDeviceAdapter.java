@@ -1,42 +1,46 @@
 package kaloyan.ivaylo.dr;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.example.myfirstapp.R;
-
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class CustomArrayAdapter extends BaseAdapter {
-	
-	List<Robot> list;
+import com.example.myfirstapp.R;
+
+public class BluetoothDeviceAdapter extends BaseAdapter {
+
+	List<BluetoothDevice> devices;
 	Context context;
-	LayoutInflater myInflater;
 	
-	public CustomArrayAdapter(List<Robot> names, Context cont) {
-		list = names;
-		context = cont;
+	public BluetoothDeviceAdapter(List<BluetoothDevice> list, Context context) {
+		devices = list;
+		this.context = context;
 	}
 	
 	@Override
 	public int getCount() {
-		return list.size();
+		devices.size();
+		return 0;
 	}
 
 	@Override
-	public Object getItem(int arg0) {
-		return list.get(arg0);
+	public Object getItem(int item) {
+		return devices.get(item);
 	}
 
 	@Override
-	public long getItemId(int position) {
-		return position;
+	public long getItemId(int id) {
+		return id;
 	}
-
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View row = convertView;
@@ -46,7 +50,7 @@ public class CustomArrayAdapter extends BaseAdapter {
 		}
 		TextView name = (TextView) row.findViewById(R.id.row);
 		
-		name.setText(list.get(position).getName());
+		name.setText(devices.get(position).getName());
 
 		return row;
 	}
