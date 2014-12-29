@@ -1,4 +1,4 @@
-package kaloyan.ivaylo.dr;
+package bg.roboleague.mobile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,13 +18,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import bg.roboleague.mobile.bluetooth.Bluetooth;
 
 import com.example.myfirstapp.R;
 
 public class DeviceScanner extends Activity {
 
 	private final static String DEVICE_DATA_SEPARATOR = "\n";
-	
+
 	private BluetoothAdapter bluetooth;
 
 	private ListView deviceView;
@@ -47,35 +48,37 @@ public class DeviceScanner extends Activity {
 			}
 		}
 	};
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.devicemenu);
-		
+
 		bluetooth = BluetoothAdapter.getDefaultAdapter();
-		
+
 		devices = new ArrayList<String>();
-		btArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, devices);	
+		btArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+				devices);
 		deviceView = (ListView) findViewById(R.id.devicelist);
 		deviceView.setAdapter(btArrayAdapter);
-		
+
 		deviceView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 				String deviceAddress = devices.get(position).split(DEVICE_DATA_SEPARATOR)[1];
 				Log.w("BLT", "Selected item " + deviceAddress);
-				if(Bluetooth.isConnected()) {
+				if (Bluetooth.isConnected()) {
 					Bluetooth.disconnect();
+				} else {
+					Bluetooth.connect(deviceAddress);
 				}
-				Bluetooth.connect(deviceAddress);
-				
+
 			}
 		});
-		
+
 		IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-		
+
 		registerReceiver(broadcastReceiver, filter);
 		discoverDevices();
 	}
@@ -86,12 +89,11 @@ public class DeviceScanner extends Activity {
 		}
 		bluetooth.startDiscovery();
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		unregisterReceiver(broadcastReceiver);
 		super.onDestroy();
 	}
-
 
 }

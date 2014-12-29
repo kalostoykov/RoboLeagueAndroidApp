@@ -1,4 +1,4 @@
-package kaloyan.ivaylo.dr;
+package bg.roboleague.mobile.bluetooth;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -71,7 +71,6 @@ public class Bluetooth extends Thread {
 			try {
 				received = input.readLine();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -80,14 +79,14 @@ public class Bluetooth extends Thread {
 
 	public static void disconnect() {
 		try {
-			input.close();
-			output.close();
-			socket.close();
+			if(input != null) input.close();
+			if(output != null) output.close();
+			if(socket != null) socket.close();
+			connected = false;
 		} catch (IOException e) {
 			Log.w("BLT", "Can't disconnect from Bluetooth module!");
 			e.printStackTrace();
 		}
-		connected = false;
 	}
 
 	public static boolean isConnected() {

@@ -1,4 +1,4 @@
-package kaloyan.ivaylo.dr;
+package bg.roboleague.mobile.robots;
 
 public class Robot {
 	private String name;

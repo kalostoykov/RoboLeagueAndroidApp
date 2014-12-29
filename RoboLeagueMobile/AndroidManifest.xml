@@ -24,7 +24,7 @@
 <!--       	    </intent-filter> -->
 <!--       	</activity> -->
       	
-      	<activity android:name="kaloyan.ivaylo.dr.StartingPoint"
+      	<activity android:name="bg.roboleague.mobile.StartingPoint"
       	    	  android:label="@string/app_name">
       	    <intent-filter>
       	        <action android:name="android.intent.action.MAIN"/>
@@ -32,7 +32,7 @@
       	    </intent-filter>
       	</activity>
       	
-      	<activity android:name="kaloyan.ivaylo.dr.DeviceScanner"
+      	<activity android:name="bg.roboleague.mobile.DeviceScanner"
       	    	  android:label="@string/app_name">
       	    <intent-filter>
       	        <action android:name="com.kalo.myfirstapp.DEVICESCANNER"/>
@@ -40,7 +40,7 @@
       	    </intent-filter>
       	</activity>
       	
-      	<activity android:name="kaloyan.ivaylo.dr.RobotScreen"
+      	<activity android:name="bg.roboleague.mobile.RobotScreen"
       	    	  android:label="@string/app_name">
       	    <intent-filter>
       	        <action android:name="com.kalo.myfirstapp.ROBOTSCREEN"/>
