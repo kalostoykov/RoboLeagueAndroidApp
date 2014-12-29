@@ -23,6 +23,8 @@ import com.example.myfirstapp.R;
 
 public class DeviceScanner extends Activity {
 
+	private final static String DEVICE_DATA_SEPARATOR = "\n";
+	
 	private BluetoothAdapter bluetooth;
 
 	private ListView deviceView;
@@ -36,7 +38,7 @@ public class DeviceScanner extends Activity {
 			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 				if (device.getName() != null) {
-					devices.add(device.getName() + "\n" + device.getAddress());
+					devices.add(device.getName() + DEVICE_DATA_SEPARATOR + device.getAddress());
 					Log.w("BLT", device.getName());
 					btArrayAdapter.notifyDataSetChanged();
 				}
@@ -62,7 +64,13 @@ public class DeviceScanner extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-				Log.w("BLT", "Selected item " + devices.get(position));
+				String deviceAddress = devices.get(position).split(DEVICE_DATA_SEPARATOR)[1];
+				Log.w("BLT", "Selected item " + deviceAddress);
+				if(Bluetooth.isConnected()) {
+					Bluetooth.disconnect();
+				}
+				Bluetooth.connect(deviceAddress);
+				
 			}
 		});
 		
