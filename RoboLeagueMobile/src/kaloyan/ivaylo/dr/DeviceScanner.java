@@ -1,6 +1,7 @@
 package kaloyan.ivaylo.dr;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -23,11 +24,9 @@ import com.example.myfirstapp.R;
 public class DeviceScanner extends Activity {
 
 	private BluetoothAdapter bluetooth;
-	private List<BluetoothDevice> devices;
-	
-	private BluetoothDeviceAdapter deviceListAdapter;
-	private ListView deviceList;
-	
+
+	private ListView deviceView;
+	private List<String> devices;
 	private ArrayAdapter<String> btArrayAdapter;
 
 	private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -37,14 +36,11 @@ public class DeviceScanner extends Activity {
 			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 				if (device.getName() != null) {
-					devices.add(device);
-					btArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+					devices.add(device.getName() + "\n" + device.getAddress());
 					Log.w("BLT", device.getName());
 					btArrayAdapter.notifyDataSetChanged();
-//					deviceListAdapter.notifyDataSetChanged();
 				}
 			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-//				deviceListAdapter.notifyDataSetChanged();
 				btArrayAdapter.notifyDataSetChanged();
 			}
 		}
@@ -55,14 +51,14 @@ public class DeviceScanner extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.devicemenu);
 		
-		devices = new ArrayList<BluetoothDevice>();
 		bluetooth = BluetoothAdapter.getDefaultAdapter();
 		
-		deviceListAdapter = new BluetoothDeviceAdapter(devices, this);
-		deviceList = (ListView) findViewById(R.id.devicelist);
-		deviceList.setAdapter(deviceListAdapter);
+		devices = new ArrayList<String>();
+		btArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, devices);	
+		deviceView = (ListView) findViewById(R.id.devicelist);
+		deviceView.setAdapter(btArrayAdapter);
 		
-		deviceList.setOnItemClickListener(new OnItemClickListener() {
+		deviceView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
