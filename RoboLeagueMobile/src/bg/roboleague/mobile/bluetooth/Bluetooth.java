@@ -52,7 +52,10 @@ public class Bluetooth extends Thread {
 
 	public void run() {
 		while (connected) {
-
+			String received = receive();
+			if(received != null) {
+				listener.receive(received);
+			}
 		}
 	}
 
