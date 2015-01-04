@@ -57,7 +57,7 @@ public class DeviceScanner extends Activity {
 		bluetooth = BluetoothAdapter.getDefaultAdapter();
 
 		devices = new ArrayList<String>();
-		btArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+		btArrayAdapter = new ArrayAdapter<String>(this, R.layout.textviewmain,
 				devices);
 		deviceView = (ListView) findViewById(R.id.devicelist);
 		deviceView.setAdapter(btArrayAdapter);
