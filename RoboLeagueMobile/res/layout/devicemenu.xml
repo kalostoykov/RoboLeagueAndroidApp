@@ -11,6 +11,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/devicestextmenu"
+        android:textColor="@color/colorwhite"
         android:textSize="30sp" >
     </TextView>
 

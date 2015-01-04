@@ -2,7 +2,8 @@
 
     <string name="app_name">RoboLeagueMobile</string>
     <string name="textmenu">Robots:</string>
-    <color name="backgroundcolor">#0deed2</color>
+    <color name="backgroundcolor">#000000</color>
+    <color name="colorwhite">#FFFFFF</color>
     <color name="dtitlecolor">#ffffff</color>
     
     <string name="addrobot">Add New Robot</string>

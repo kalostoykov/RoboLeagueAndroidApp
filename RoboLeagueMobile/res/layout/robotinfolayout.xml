@@ -12,6 +12,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         
+        android:textColor="@color/colorwhite"
         android:textSize="40sp" >
     </TextView>
 
@@ -24,20 +25,24 @@
 
             <TextView
                 android:id="@+id/firstlap"
+                android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:text="@string/firstlaptext"
+                android:textColor="@color/colorwhite"
                 android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/firstlapresult"
+                android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:padding="3dp"
+                android:padding="5dp"
+                android:textColor="@color/colorwhite"
                 android:textSize="40sp" />
         </TableRow>
 
@@ -45,20 +50,24 @@
 
             <TextView
                 android:id="@+id/secondlap"
+                android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:text="@string/secondlaptext"
+                android:textColor="@color/colorwhite"
                 android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/secondlapresult"
+                android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:padding="3dp"
+                android:padding="5dp"
+                android:textColor="@color/colorwhite"
                 android:textSize="40sp" />
         </TableRow>
 
@@ -66,20 +75,24 @@
 
             <TextView
                 android:id="@+id/thirdlap"
+                android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
          		android:layout_weight="1"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:text="@string/thirdlaptext"
+                android:textColor="@color/colorwhite"
                 android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/thirdlapresult"
+                android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
          		android:layout_weight="1"
                 android:gravity="right"
-                android:padding="3dp"
+                android:padding="5dp"
+                android:textColor="@color/colorwhite"
                 android:textSize="40sp" />
         </TableRow>
     </TableLayout>
