@@ -29,4 +29,8 @@ public class Robots {
 		}
 		return null;
 	}
+
+	public static void sortByTime(){
+		Collections.sort(robots);
+	}
 }
