@@ -42,6 +42,15 @@
       	    </intent-filter>
       	</activity>
       	
+      	<activity android:name="bg.roboleague.mobile.Calibration"
+      	    	  android:label="@string/app_name"
+      	    	  android:configChanges="orientation">
+      	    <intent-filter>
+      	        <action android:name="com.kalo.myfirstapp.CALIBRATION"/>
+      	        <category android:name="android.intent.category.DEFAULT"/>
+      	    </intent-filter>
+      	</activity>
+      	
       	<activity android:name="bg.roboleague.mobile.RobotScreen"
       	    	  android:label="@string/app_name"
                 android:configChanges="orientation">
