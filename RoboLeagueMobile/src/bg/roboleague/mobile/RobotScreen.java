@@ -33,6 +33,25 @@ public class RobotScreen extends Activity {
 		robot.setTime(1, 9);
 		robot.setTime(2, 23);
 		int[] times = robot.getTimes();
+
+		final Button startButton = (Button) this.findViewById(R.id.startButton);
+		startButton.setText("Start");
+		startButton.setTag(1);
+
+		startButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				int status = (Integer) v.getTag();
+				if (status == 1) {
+					startButton.setText("Stop");
+					v.setTag(0);
+				} else {
+					startButton.setText("Start");
+					v.setTag(1);
+				}
+			}
+		});
 		
 		firstLap.setText(Integer.toString(times[0]));
 		secondLap.setText(Integer.toString(times[1]));
