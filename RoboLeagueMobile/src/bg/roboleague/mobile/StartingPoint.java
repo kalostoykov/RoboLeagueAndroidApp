@@ -1,11 +1,14 @@
 package bg.roboleague.mobile;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import bg.roboleague.mobile.robots.Robots;
 
-import com.example.myfirstapp.R;
+import bg.roboleague.mobile.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,7 +46,11 @@ public class StartingPoint extends Activity {
 		initBluetooth();
 		fillListView();
 		addNewRobot();
+		sortByTime();
 		getMassageForListItemClick();
+		Robots.add("Test Robot");
+		FileIO.addRobotToFile("Test Robot");
+		createExternalStorageFile();
 	}
 
 	private void initBluetooth() {
@@ -120,15 +127,14 @@ public class StartingPoint extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 
-								EditText roboName = (EditText) view
+								EditText editTextRoboName = (EditText) view
 										.findViewById(R.id.roboname);
-								if (roboName != null) {
-									Robots.add(roboName.getText().toString());
-									// for(BluetoothDevice dvc: devices) {
-									// Toast.makeText(context,
-									// devices.get(0).getName(),
-									// Toast.LENGTH_LONG).show();
-									// }
+								String roboName = editTextRoboName.getText().toString();
+								if (roboName.matches("")) {
+									Toast.makeText(context, "Enter valid name!", Toast.LENGTH_LONG).show();
+								} else {
+									Robots.add(roboName);
+									FileIO.addRobotToFile(roboName);
 								}
 							}
 						});
@@ -138,7 +144,20 @@ public class StartingPoint extends Activity {
 			}
 		});
 	}
-
+	
+	private void sortByTime() {
+		// TODO Auto-generated method stub
+		Button sortButton = (Button)findViewById(R.id.sortrobots);
+		sortButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Robots.sortByTime();
+				list.invalidateViews();
+			}
+		});
+	}
+	
 	private void getMassageForListItemClick() {
 
 		list.setOnItemClickListener(new OnItemClickListener() {
@@ -157,6 +176,17 @@ public class StartingPoint extends Activity {
 				startActivity(i);
 			}
 		});
+	}
+	
+	private void createExternalStorageFile() {
+		// TODO Auto-generated method stub
+		try {
+			FileWriter myFileWriter = new FileWriter(android.os.Environment.getExternalStorageDirectory().getAbsolutePath()
+					+ File.separator + "results.csv", true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
