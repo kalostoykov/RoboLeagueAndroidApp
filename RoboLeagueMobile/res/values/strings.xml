@@ -1,10 +1,11 @@
 <resources>
 
     <string name="app_name">RoboLeagueMobile</string>
-    <string name="textmenu">Robots:</string>
+    <string name="textmenu">Robots</string>
     <color name="backgroundcolor">#000000</color>
     <color name="colorwhite">#FFFFFF</color>
     <color name="dtitlecolor">#ffffff</color>
+    <color name="colorgreen">#a4c639</color>
     
     <string name="addrobot">Add New Robot</string>
     <string name="robotname">robot_name</string>
@@ -16,5 +17,8 @@
     <string name="secondlaptext">2</string>
     <string name="thirdlaptext">3</string>
     <string name="devicestextmenu">Devices</string>
+    <string name="calibration">Calibration</string>
+    <string name="sort">Sort</string>
+    <string name="reset">Reset</string>
 
 </resources>

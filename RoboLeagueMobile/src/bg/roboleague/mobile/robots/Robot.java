@@ -1,6 +1,6 @@
 package bg.roboleague.mobile.robots;
 
-public class Robot {
+public class Robot implements Comparable<Robot>{
 	private String name;
 	private int[] times;
 	private int bestTime;
@@ -9,13 +9,12 @@ public class Robot {
 		this.name = name;
 		this.times = new int[] { 0, 0, 0 };
 		this.bestTime = 0;
-		
 	}
 	
 	public int getBestTime() {
 		return bestTime;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -35,21 +34,20 @@ public class Robot {
 	}
 	
 	public int getTime(int attempt) {
-		if(attempt>2 || attempt<0) {
-			/*throw exception*/
+		if((attempt > 2) || (attempt < 0)) {
 			return -1;
 		} else {
 			return times[attempt];
 		}
 	}
-
+	
 	public int[] getTimes() {
 		return times;
 	}
 
 	@Override
 	public int compareTo(Robot another) {
-		return this.bestTime - another.getBestTime(); //ascending order
+		return this.bestTime - another.getBestTime();
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package bg.roboleague.mobile.robots;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Robots {
@@ -21,16 +22,17 @@ public class Robots {
 	public static void add(String name) {
 		robots.add(new Robot(name));
 	}
-	
+
 	public static Robot getByName(String name) {
-		for(Robot robot: robots) {
-			if(robot.getName().equals(name)) 
-				return robot; 
+		for (Robot robot : robots) {
+			if (robot.getName().equals(name))
+				return robot;
 		}
 		return null;
 	}
-
+	
 	public static void sortByTime(){
 		Collections.sort(robots);
 	}
+	
 }

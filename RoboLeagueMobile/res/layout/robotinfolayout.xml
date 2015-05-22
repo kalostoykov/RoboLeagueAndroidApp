@@ -22,7 +22,7 @@
         android:stretchColumns="1" >
 
         <TableRow>
-
+            
             <TextView
                 android:id="@+id/firstlap"
                 android:background="@drawable/cellshape"
@@ -39,7 +39,7 @@
                 android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="4"
                 android:gravity="right"
                 android:padding="5dp"
                 android:textColor="@color/colorwhite"
@@ -64,7 +64,7 @@
                 android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="4"
                 android:gravity="right"
                 android:padding="5dp"
                 android:textColor="@color/colorwhite"
@@ -89,14 +89,14 @@
                 android:background="@drawable/cellshape"
                 android:layout_width="0dp"
          		android:layout_height="wrap_content"
-         		android:layout_weight="1"
+         		android:layout_weight="4"
                 android:gravity="right"
                 android:padding="5dp"
                 android:textColor="@color/colorwhite"
                 android:textSize="40sp" />
         </TableRow>
     </TableLayout>
-
+    
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
@@ -108,5 +108,17 @@
         android:gravity="center"
         android:textColor="@color/colorwhite"
         android:textSize="25sp"/>
-
+	
+    <Button
+        android:id="@+id/resetTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:text="@string/reset"
+        android:textColor="@color/colorwhite"
+        android:textSize="25sp"/>
 </LinearLayout>

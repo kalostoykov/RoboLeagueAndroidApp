@@ -22,7 +22,20 @@
         android:layout_weight="0.05"
         android:cacheColorHint="#00000000" >
     </ListView>
-
+	
+    <Button
+        android:id="@+id/entercalibrationactivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:text="@string/calibration"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"/>
+    
     <Button
         android:id="@+id/sortrobots"
         android:layout_width="wrap_content"
@@ -32,16 +45,17 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/buttonshape"
         android:gravity="center"
-        android:text="Sort"
+        android:text="@string/sort"
         android:textColor="#FFFFFF"
         android:textSize="25sp"/>
-        
+    
     <Button
         android:id="@+id/addRobot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/buttonshape"
         android:gravity="center"
         android:text="@string/addrobot"

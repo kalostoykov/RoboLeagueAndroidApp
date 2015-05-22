@@ -13,14 +13,15 @@ import com.opencsv.CSVWriter;
 
 public class FileIO {
 	private static String fileName = "results.csv";
-	public static void addRobotToFile(String robotName) { // add new robot
+	
+	public static void addRobotToFile(String robotName) {
 
 		String csv = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + fileName;
 		CSVWriter writer;
 		try {
 			writer = new CSVWriter(new FileWriter(csv, true));
 			List<String[]> data = new ArrayList<String[]>();
-			data.add(new String[] { robotName, "-1", "-1", "-1" });
+			data.add(new String[] { robotName, "0", "0", "0" });
 			writer.writeAll(data);
 			writer.close();
 		} catch (IOException e) {
@@ -51,12 +52,6 @@ public class FileIO {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			for (String[] line : myEntries) {
-				Log.i("el", line[0] + " " + line[1] + " " + line[2] + " "
-						+ line[3]);
-			}
-
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -79,5 +74,4 @@ public class FileIO {
 			e.printStackTrace();
 		}
 	}
-	
 }

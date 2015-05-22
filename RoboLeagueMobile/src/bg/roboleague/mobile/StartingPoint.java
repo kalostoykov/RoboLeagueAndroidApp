@@ -7,20 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bg.roboleague.mobile.robots.Robots;
-
 import bg.roboleague.mobile.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class StartingPoint extends Activity {
+
 	private static int REQUEST_ENABLE_BT = 42;
 	private ListView list;
 	private CustomArrayAdapter customAdapter;
@@ -44,13 +40,12 @@ public class StartingPoint extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		initBluetooth();
-		fillListView();
-		addNewRobot();
-		sortByTime();
-		getMassageForListItemClick();
-		Robots.add("Test Robot");
-		FileIO.addRobotToFile("Test Robot");
 		createExternalStorageFile();
+		fillListView();
+		enterCalibrationActivity();
+		addNewRobot();
+		sortByTimeButton();
+		startActivityForListItemClick();
 	}
 
 	private void initBluetooth() {
@@ -61,15 +56,16 @@ public class StartingPoint extends Activity {
 			Toast.makeText(context, "fail", Toast.LENGTH_LONG).show();
 			return;
 		}
-		if (!bAdapter.isEnabled()) {
-			Intent enableBtIntent = new Intent(
-					BluetoothAdapter.ACTION_REQUEST_ENABLE);
-			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-		}
-		else {
+		
+		if (bAdapter.isEnabled()) {
 			Intent scanBluetooth = new Intent(getApplicationContext(),
 					DeviceScanner.class);
 			startActivity(scanBluetooth);
+		}
+		else {
+			Intent enableBtIntent = new Intent(
+					BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		}
 	}
 
@@ -90,7 +86,20 @@ public class StartingPoint extends Activity {
 		list = (ListView) findViewById(R.id.listwithrobots);
 		list.setAdapter(customAdapter);
 	}
-
+	
+	private void enterCalibrationActivity() {
+		final Button enterCalibrationActivityButton = (Button) findViewById(R.id.entercalibrationactivity);
+		
+		enterCalibrationActivityButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), Calibration.class);
+				startActivity(i);
+			}
+		});
+	}
+	
 	private void addNewRobot() {
 
 		final Button addRobot = (Button) findViewById(R.id.addRobot);
@@ -98,14 +107,9 @@ public class StartingPoint extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
-				// Inflate and set the layout for the dialog
-				// Pass null as the parent view because its going in the dialog
-				// layout
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						StartingPoint.this);
-				LayoutInflater inflater = StartingPoint.this
-						.getLayoutInflater(); // Get the layout inflater
+				LayoutInflater inflater = StartingPoint.this.getLayoutInflater();
 				final View view = inflater.inflate(R.layout.addrobotdialog,
 						null);
 
@@ -145,8 +149,7 @@ public class StartingPoint extends Activity {
 		});
 	}
 	
-	private void sortByTime() {
-		// TODO Auto-generated method stub
+	private void sortByTimeButton() {
 		Button sortButton = (Button)findViewById(R.id.sortrobots);
 		sortButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -158,7 +161,7 @@ public class StartingPoint extends Activity {
 		});
 	}
 	
-	private void getMassageForListItemClick() {
+	private void startActivityForListItemClick() {
 
 		list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -179,12 +182,10 @@ public class StartingPoint extends Activity {
 	}
 	
 	private void createExternalStorageFile() {
-		// TODO Auto-generated method stub
 		try {
 			FileWriter myFileWriter = new FileWriter(android.os.Environment.getExternalStorageDirectory().getAbsolutePath()
 					+ File.separator + "results.csv", true);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -203,5 +204,6 @@ public class StartingPoint extends Activity {
 								System.exit(0);
 							}
 						}).setNegativeButton("No", null).show();
+		
 	}
 }

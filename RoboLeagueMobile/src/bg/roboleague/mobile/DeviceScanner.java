@@ -1,7 +1,6 @@
 package bg.roboleague.mobile;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -20,7 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import bg.roboleague.mobile.bluetooth.Bluetooth;
 
-import com.example.myfirstapp.R;
+import bg.roboleague.mobile.R;
 
 public class DeviceScanner extends Activity {
 
@@ -38,7 +37,7 @@ public class DeviceScanner extends Activity {
 			String action = intent.getAction();
 			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-				if (device.getName() != null) {
+				if ((device.getName() != null) && !(devices.contains(device.getName()))) {
 					devices.add(device.getName() + DEVICE_DATA_SEPARATOR + device.getAddress());
 					Log.w("BLT", device.getName());
 					btArrayAdapter.notifyDataSetChanged();
@@ -72,6 +71,7 @@ public class DeviceScanner extends Activity {
 					Bluetooth.disconnect();
 				} else {
 					Bluetooth.connect(deviceAddress);
+					while(!Bluetooth.isConnected()){}
 				}
 
 			}
@@ -81,6 +81,8 @@ public class DeviceScanner extends Activity {
 
 		registerReceiver(broadcastReceiver, filter);
 		discoverDevices();
+		
+		
 	}
 
 	public void discoverDevices() {
